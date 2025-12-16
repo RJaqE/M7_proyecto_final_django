@@ -1,0 +1,15 @@
+{% extends 'productos/base.html' %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3 text-center">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Gestión de Inventario</h1>
+        <p class="col-md-8 fs-4 mx-auto">Sistema administrativo para controlar productos, categorías y etiquetas de forma eficiente.</p>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="{% url 'lista_productos' %}" class="btn btn-primary btn-lg">Ver Productos</a>
+            <a href="{% url 'lista_categorias' %}" class="btn btn-outline-secondary btn-lg">Categorías</a>
+            <a href="{% url 'lista_etiquetas' %}" class="btn btn-outline-secondary btn-lg">Etiquetas</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

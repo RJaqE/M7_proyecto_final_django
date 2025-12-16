@@ -1,0 +1,15 @@
+{% extends 'productos/base.html' %}
+
+{% block content %}
+<div class="alert alert-danger shadow rounded p-5 text-center">
+    <h2 class="display-6">¿Estás seguro?</h2>
+    <p class="lead">Vas a eliminar el producto: <strong>{{ producto.nombre }}</strong></p>
+    <p class="text-muted">Esta acción no se puede deshacer.</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger btn-lg mx-2">Sí, eliminar</button>
+        <a href="{% url 'lista_productos' %}" class="btn btn-secondary btn-lg mx-2">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

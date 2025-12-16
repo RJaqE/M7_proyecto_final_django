@@ -1,0 +1,39 @@
+{% extends 'productos/base.html' %}
+
+{% block content %}
+<div class="card shadow-lg">
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <h3 class="mb-0">{{ producto.nombre }}</h3>
+        <span class="badge bg-warning text-dark fs-6">${{ producto.precio }}</span>
+    </div>
+    <div class="card-body">
+        <p class="lead">{{ producto.descripcion }}</p>
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h5><i class="bi bi-tag"></i> Detalles Técnicos</h5>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Categoría:</strong> {{ producto.categoria.nombre }}</li>
+                    <li class="list-group-item"><strong>Peso:</strong> {{ producto.detalles.peso }} kg</li>
+                    <li class="list-group-item"><strong>Dimensiones:</strong> {{ producto.detalles.dimensiones }}</li>
+                    <li class="list-group-item"><strong>Fabricación:</strong> {{ producto.detalles.fecha_fabricacion|default:"No especificada" }}</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5>Etiquetas</h5>
+                <div>
+                    {% for etiqueta in producto.etiquetas.all %}
+                        <span class="badge rounded-pill bg-secondary">{{ etiqueta.nombre }}</span>
+                    {% empty %}
+                        <span class="text-muted">Sin etiquetas</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-end">
+        <a href="{% url 'lista_productos' %}" class="btn btn-secondary">Volver</a>
+        <a href="{% url 'editar_producto' producto.id %}" class="btn btn-primary">Editar</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'productos/base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Panel de Reportes Avanzados</h2>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header bg-info text-dark">
+                <h5>Productos Premium (> $50)</h5>
+                <small>Usando <code>.filter(precio__gt=50)</code></small>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for p in productos_caros %}
+                <li class="list-group-item d-flex justify-content-between">
+                    {{ p.nombre }} <span class="badge bg-primary">${{ p.precio }}</span>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No hay resultados.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header bg-warning text-dark">
+                <h5>Ofertas (SQL Crudo: < $50)</h5>
+                <small>Usando <code>.raw("SELECT * ...")</code></small>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for p in productos_baratos_sql %}
+                <li class="list-group-item d-flex justify-content-between">
+                    {{ p.nombre }} <span class="badge bg-success">${{ p.precio }}</span>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No hay resultados.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-secondary text-white">
+                <h5>Catálogo General (Excluyendo 'Hogar')</h5>
+                <small>Usando <code>.exclude(categoria__nombre='Hogar')</code></small>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <thead><tr><th>Producto</th><th>Categoría</th></tr></thead>
+                    <tbody>
+                        {% for p in productos_sin_hogar %}
+                        <tr>
+                            <td>{{ p.nombre }}</td>
+                            <td>{{ p.categoria.nombre }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
