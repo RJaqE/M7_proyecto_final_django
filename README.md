@@ -14,8 +14,8 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina:
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone <URL_DE_TU_REPOSITORIO>
-    cd proyecto_final_django
+    git clone https://github.com/RJaqE/M7_proyecto_final_django.git
+    cd M7_proyecto_final_django
     ```
 
 2.  **Crear y activar el entorno virtual:**
